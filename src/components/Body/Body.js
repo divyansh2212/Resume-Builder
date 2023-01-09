@@ -11,7 +11,7 @@ const Body = () => {
     "Projects",
     "Education",
     "Achievements",
-    "Summary",
+    "Skills",
     "Other",
   ];
 

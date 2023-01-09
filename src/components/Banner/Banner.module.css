@@ -1,0 +1,33 @@
+.errbanner {
+    background-color: rgb(226, 74, 74);
+    padding: 10px;
+    color: white;
+    width: max-content;
+    /* border-radius: 20px; */
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    position: fixed;
+    top: 10px;
+    right: 0px;
+    height: max-content;
+    /* transition: left 10s ease; */
+    animation: fadeIn 10s;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
+
+    75% {
+        opacity: 0.6;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}

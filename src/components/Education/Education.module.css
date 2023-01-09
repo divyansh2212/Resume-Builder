@@ -4,17 +4,69 @@
     gap: 15px;
 }
 
-.detail .row {
+.educationBody {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.educationBody .row {
     display: flex;
     gap: 20px;
 }
 
-.detail .column {
+.educationBody .column {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.detail .row>div {
+.educationBody .row>div {
     flex: 1;
+}
+
+.textarea {
+    border: 1px solid #cccccc;
+    outline: none;
+    padding: 10px 12px;
+    font-size: 1rem;
+    border-radius: 5px;
+    resize: none;
+}
+
+.header {
+    background-color: lightskyblue;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    width: max-content;
+    padding: 10px;
+    margin-left: 4px;
+    cursor: pointer;
+}
+
+.addHeader {
+    margin-left: 4px;
+    border: 2px solid lightskyblue;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 4px;
+    cursor: pointer;
+}
+
+.educationHeader {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    gap: 10px;
+}
+
+.addIcon {
+    color: lightskyblue;
+    font-weight: bold;
+    font-size: 30px;
+    padding-right: 6px;
+    padding-left: 4px;
+    cursor: pointer;
 }

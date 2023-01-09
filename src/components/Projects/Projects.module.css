@@ -4,26 +4,69 @@
     gap: 15px;
 }
 
-.detail .row {
+.ProjectBody {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.ProjectBody .row {
     display: flex;
     gap: 20px;
 }
 
-.detail .column {
+.ProjectBody .column {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.detail .row>div {
+.ProjectBody .row>div {
     flex: 1;
 }
 
-.textarea{
+.textarea {
     border: 1px solid #cccccc;
     outline: none;
     padding: 10px 12px;
     font-size: 1rem;
     border-radius: 5px;
     resize: none;
+}
+
+.header {
+    background-color: lightskyblue;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    width: max-content;
+    padding: 10px;
+    margin-left: 4px;
+    cursor: pointer;
+}
+
+.addheader {
+    margin-left: 4px;
+    border: 2px solid lightskyblue;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 4px;
+    cursor: pointer;
+}
+
+.projectheader {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    gap: 10px;
+}
+
+.addicon {
+    color: lightskyblue;
+    font-weight: bold;
+    font-size: 30px;
+    padding-right: 6px;
+    padding-left: 4px;
+    cursor: pointer;
 }
