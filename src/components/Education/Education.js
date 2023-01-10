@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Education.module.css";
 import InputControl from "../InputControl/InputControl.js";
 import Banner from "../Banner/Banner.js";
@@ -33,6 +33,18 @@ const Education = () => {
     setValues((values) => [...values, tempEducation]);
   };
 
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem("education"));
+    if (data) setValues(data);
+  }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      const data = JSON.stringify(values);
+      localStorage.setItem("education", data);
+    }, 10);
+  }, [values]);
+  
   return (
     <>
       {flag && <Banner title="You have added enough Educations!" />}

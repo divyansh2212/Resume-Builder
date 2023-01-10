@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Achievements.module.css";
 import InputControl from "../InputControl/InputControl.js";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 import Banner from "../Banner/Banner.js";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
@@ -15,17 +16,22 @@ const reorder = (list, startIndex, endIndex) => {
 const grid = 8;
 
 const getItemStyle = (isDragging, draggableStyle) => ({
+  position: "relative",
+  color: "black",
   userSelect: "none",
   padding: grid * 2,
+  borderRadius: 10,
+  display: "flex",
+  alignItems: "Center",
   margin: `0 0 ${grid}px 0`,
-  background: isDragging ? "lightgreen" : "grey",
+  background: isDragging ? "lightblue" : "lightblue",
   ...draggableStyle,
 });
 
 const getListStyle = (isDraggingOver) => ({
-  background: isDraggingOver ? "lightblue" : "lightgrey",
+  background: isDraggingOver ? "white" : "white",
   padding: grid,
-  width: 250,
+  width: "100%",
 });
 
 const Achievements = () => {
@@ -59,6 +65,21 @@ const Achievements = () => {
     }
   };
 
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem("achievements")) || null;
+    if (data) setAchievements(data);
+  }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      const data = JSON.stringify(achievements);
+      localStorage.setItem("achievements", data);
+    }, 10);
+  }, [achievements]);
+  const handleDelete = (id) => {
+    setAchievements((current) => current.filter((item, index) => index != id));
+  };
+
   return (
     <>
       {flag && <Banner title="Field is mandatory !" />}
@@ -74,13 +95,15 @@ const Achievements = () => {
                 setCurrent(e.target.value);
               }}
             />
-            <button
-              className={styles.achButton}
-              disabled={achievements.length === 8}
-              onClick={handleSubmit}
-            >
-              Add Achievement
-            </button>
+            <div className={styles.achAddArea}>
+              <button
+                className={styles.achButton}
+                disabled={achievements.length === 8}
+                onClick={handleSubmit}
+              >
+                Add Achievement
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -96,10 +119,10 @@ const Achievements = () => {
                   ref={provided.innerRef}
                   style={getListStyle(snapshot.isDraggingOver)}
                 >
-                  {achievements.map((item, index) => (
+                  {achievements?.map((item, index) => (
                     <Draggable
-                      key={index}
-                      draggableId={index}
+                      key={`item-${index}`}
+                      draggableId={`item-${index}`}
                       index={index}
                     >
                       {(provided, snapshot) => (
@@ -112,7 +135,14 @@ const Achievements = () => {
                             provided.draggableProps.style
                           )}
                         >
-                          {item}
+                          <span className={styles.number}>{index + 1}. </span>
+                          <span className={styles.text}>{item}</span>
+                          <span
+                            className={styles.deleteIcon}
+                            onClick={() => handleDelete(index)}
+                          >
+                            <DeleteIcon />
+                          </span>
                         </div>
                       )}
                     </Draggable>

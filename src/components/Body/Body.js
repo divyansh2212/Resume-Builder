@@ -12,7 +12,6 @@ const Body = () => {
     "Education",
     "Achievements",
     "Skills",
-    "Other",
   ];
 
   return (

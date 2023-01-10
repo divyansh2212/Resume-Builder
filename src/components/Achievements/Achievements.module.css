@@ -34,7 +34,7 @@
 
 .achButton {
     color: white;
-    background-color: skyblue;
+    background-color: rgb(28, 152, 202);
     border: none;
     outline: none;
     padding: 10px;
@@ -45,6 +45,18 @@
     font-weight: bold;
 
 }
+
+.achButton:disabled {
+    background-color: gray;
+    cursor: not-allowed;
+}
+
+.achAddArea {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
 
 .achHeader {
     width: 100%;
@@ -57,4 +69,31 @@
     font-size: 2rem;
     color: rgb(28, 152, 202);
     font-family: 'Caveat', cursive;
+}
+
+.number {
+    /* font-size: 1.2rem; */
+    /* background-color: white;
+    border: 2px solid blue;
+    height: 100%; */
+    /* border-radius: 50%; */
+    /* font-family: 'Caveat', cursive; */
+    font-weight: bold;
+}
+
+.deleteIcon {
+    /* justify-content: center; */
+    /* flex:1; */
+    /* font-weight: 20px; */
+    position: absolute;
+    right: 10px;
+    /* margin-left:20px; */
+    color: rgb(243, 78, 78);
+    justify-self: end;
+    cursor: pointer;
+}
+
+.text {
+    padding-left: 20px;
+    padding-right: 20px;
 }

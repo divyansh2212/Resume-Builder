@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./WorkExperience.module.css";
 import InputControl from "../InputControl/InputControl.js";
 import { useState } from "react";
@@ -36,7 +36,17 @@ const WorkExperience = () => {
     }
     setValues((values) => [...values, tempproject]);
   };
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem("workExp"));
+    if (data) setValues(data);
+  }, []);
 
+  useEffect(() => {
+    setTimeout(() => {
+      const data = JSON.stringify(values);
+      localStorage.setItem("workExp", data);
+    }, 10);
+  }, [values]);
   return (
     <>
       {flag && <Banner title="You have added Enough Work Experiences !" />}

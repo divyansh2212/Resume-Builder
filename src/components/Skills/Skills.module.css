@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap');
+
 .detail {
     display: flex;
     flex-direction: column;
@@ -19,12 +21,92 @@
     flex: 1;
 }
 
-.textarea {
-    border: 1px solid #cccccc;
+/* .listskills {
+    width: 100%;
+} */
+
+.oneAchieve {
+    border: 5px solid skyblue;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.listskills {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skillButton {
+    color: white;
+    background-color: rgb(28, 152, 202);
+    border: none;
     outline: none;
-    padding: 10px 12px;
+    padding: 10px;
     font-size: 1rem;
-    border-radius: 5px;
-    resize: none;
-    height: 120px;
+    width: max-content;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+
+}
+
+.skillbox {
+    border: 3px solid rgb(28, 152, 202);
+    font-family: 'Caveat', cursive;
+    padding: 5px;
+    border-radius: 20px;
+    width: max-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.skillButton:disabled {
+    background-color: gray;
+    cursor: not-allowed;
+}
+
+
+.achHeader {
+    width: 100%;
+    padding: 10px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: max-content;
+    font-size: 2rem;
+    color: rgb(28, 152, 202);
+    font-family: 'Caveat', cursive;
+}
+
+.number {
+    /* font-size: 1.2rem; */
+    /* background-color: white;
+    border: 2px solid blue;
+    height: 100%; */
+    /* border-radius: 50%; */
+    /* font-family: 'Caveat', cursive; */
+    font-weight: bold;
+}
+
+.deleteIcon {
+    /* justify-content: center; */
+    /* flex:1; */
+    /* font-weight: 20px; */
+    /* position: absolute;
+    right: 10px; */
+    margin-right: 5px;
+    color: rgb(243, 78, 78);
+    justify-self: end;
+    cursor: pointer;
+    font-size: smaller;
+}
+
+.text {
+    padding-left: 20px;
+    padding-right: 8px;
 }

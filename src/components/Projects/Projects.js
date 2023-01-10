@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Projects.module.css";
 import InputControl from "../InputControl/InputControl.js";
 import Banner from "../Banner/Banner.js";
@@ -31,6 +31,19 @@ const Projects = () => {
     }
     setValues((values) => [...values, tempProject]);
   };
+
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem("projects"));
+    if (data) setValues(data);
+  }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      const data = JSON.stringify(values);
+      localStorage.setItem("projects", data);
+    }, 10);
+  }, [values]);
+
   return (
     <>
       {banner && <Banner title="You have added Enough Projects !" />}
@@ -46,9 +59,7 @@ const Projects = () => {
         </div>
         {values?.map((key, index) => (
           <div className={styles.ProjectBody} key={key}>
-            <div className={styles.header}>
-              🔖 Project {index + 1}
-            </div>
+            <div className={styles.header}>🔖 Project {index + 1}</div>
             <div className={styles.row}>
               <InputControl
                 label="Title"

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Editor.module.css";
 import BasicInfo from "../BasicInfo/BasicInfo";
 import WorkExperience from "../WorkExperience/WorkExperience";
@@ -13,6 +13,17 @@ function Editor(props) {
 
   const [activeSectionKey, setActiveSectionKey] = useState(sections[0]);
 
+  // useEffect(() => {
+  //   const data = JSON.parse(localStorage.getItem("activeSession"));
+  //   if (data) setActiveSectionKey(data);
+  // }, []);
+
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     const data = JSON.stringify(activeSectionKey);
+  //     localStorage.setItem("activeSession", data);
+  //   }, 10);
+  // }, [activeSectionKey]);
   return (
     <>
       <div className={styles.container}>
@@ -36,7 +47,7 @@ function Editor(props) {
           {activeSectionKey === "Education" && <Education />}
           {activeSectionKey === "Achievements" && <Achievements />}
           {activeSectionKey === "Skills" && <Skills />}
-          {activeSectionKey === "Other" && <Other />}
+          {/* {activeSectionKey === "Other" && <Other />} */}
         </div>
       </div>
       <button className={styles.btn}>Save</button>

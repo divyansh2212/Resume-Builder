@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import InputControl from "../InputControl/InputControl";
 import styles from "./BasicInfo.module.css";
 
@@ -11,6 +11,18 @@ const BasicInfo = () => {
     email: "",
     phone: "",
   });
+
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem("basicInfo"));
+    if (data) setBasicInfo(data);
+  }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      const data = JSON.stringify(basicInfo);
+      localStorage.setItem("basicInfo", data);
+    }, 10);
+  }, [basicInfo]);
 
   return (
     <div>
