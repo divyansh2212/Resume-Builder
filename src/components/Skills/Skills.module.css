@@ -110,3 +110,8 @@
     padding-left: 20px;
     padding-right: 8px;
 }
+
+.skillButton:hover {
+    position: relative;
+    bottom: 2px;
+}

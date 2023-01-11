@@ -12,6 +12,7 @@ const Projects = () => {
     desc: "",
   };
   const [banner, setBanner] = useState(false);
+  const [emptyFlag, setEmptyFlag] = useState(false);
   const [values, setValues] = useState([
     {
       title: "",
@@ -22,6 +23,17 @@ const Projects = () => {
     },
   ]);
   const IncreaseProjectCount = () => {
+    for (let i = 0; i < values.length; i++) {
+      if (values[i].title !== "" && values[i].desc !== "") {
+      } else {
+        setEmptyFlag(true);
+        setTimeout(() => {
+          setEmptyFlag(false);
+        }, 2000);
+
+        return;
+      }
+    }
     if (values.length === 4) {
       setBanner(true);
       setTimeout(() => {
@@ -43,26 +55,43 @@ const Projects = () => {
       localStorage.setItem("projects", data);
     }, 10);
   }, [values]);
-
+  const handleDelete = (id) => {
+    if (values.length === 1) {
+      return;
+    }
+    setValues((current) => current.filter((item, index) => index != id));
+  };
   return (
     <>
-      {banner && <Banner title="You have added Enough Projects !" />}
+      {emptyFlag && <Banner title="* marked Fields are mandatory !!" />}
+      {banner && <Banner title="You have added enough Projects !" />}
       <div className={styles.detail}>
         <div className={styles.projectheader}>
-          <div
+          <button
             className={styles.addheader}
             onClick={() => IncreaseProjectCount()}
           >
             <span className={styles.addicon}>+</span>
             Add Projects
-          </div>
+          </button>
         </div>
         {values?.map((key, index) => (
           <div className={styles.ProjectBody} key={key}>
-            <div className={styles.header}>🔖 Project {index + 1}</div>
+            <div className={styles.header}>
+              Project {index + 1} &nbsp;&nbsp;&nbsp;
+              {values.length > 1 && (
+                <span
+                  className={styles.deleteIcon}
+                  onClick={() => handleDelete(index)}
+                >
+                  ❌
+                </span>
+              )}
+            </div>
             <div className={styles.row}>
               <InputControl
                 label="Title"
+                imp="true"
                 placeholder="Enter title eg. Chat app"
                 value={values[index].title}
                 onChange={(e) => {
@@ -107,7 +136,10 @@ const Projects = () => {
               />
             </div>
             <div className={styles.column}>
-              <label>Enter project description</label>
+              <label>
+                Enter project description &nbsp;
+                <span style={{ color: "red", fontWeight: "Bold" }}>*</span>
+              </label>
               <textarea
                 className={styles.textarea}
                 placeholder="Enter your project Description"

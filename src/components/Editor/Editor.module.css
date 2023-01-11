@@ -148,4 +148,15 @@
     border: 4px solid lightskyblue;
     border-radius: 7px;
     padding: 5px;
+    width: 50%;
+}
+
+.btndiv {
+    display: flex;
+    justify-content: center;
+}
+
+.btn:hover {
+    color: white;
+    background-color: lightskyblue;
 }

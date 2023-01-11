@@ -5,7 +5,6 @@ import WorkExperience from "../WorkExperience/WorkExperience";
 import Projects from "../Projects/Projects.js";
 import Education from "../Education/Education.js";
 import Achievements from "../Achievements/Achievements.js";
-import Other from "../Other/Other";
 import Skills from "../Skills/Skills";
 
 function Editor(props) {
@@ -13,17 +12,6 @@ function Editor(props) {
 
   const [activeSectionKey, setActiveSectionKey] = useState(sections[0]);
 
-  // useEffect(() => {
-  //   const data = JSON.parse(localStorage.getItem("activeSession"));
-  //   if (data) setActiveSectionKey(data);
-  // }, []);
-
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     const data = JSON.stringify(activeSectionKey);
-  //     localStorage.setItem("activeSession", data);
-  //   }, 10);
-  // }, [activeSectionKey]);
   return (
     <>
       <div className={styles.container}>
@@ -47,10 +35,16 @@ function Editor(props) {
           {activeSectionKey === "Education" && <Education />}
           {activeSectionKey === "Achievements" && <Achievements />}
           {activeSectionKey === "Skills" && <Skills />}
-          {/* {activeSectionKey === "Other" && <Other />} */}
         </div>
       </div>
-      <button className={styles.btn}>Save</button>
+      <div className={styles.btndiv}>
+        <button
+          className={styles.btn}
+          onClick={() => window.location.reload(false)}
+        >
+          Save
+        </button>
+      </div>
     </>
   );
 }

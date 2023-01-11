@@ -3,6 +3,7 @@ import styles from "./WorkExperience.module.css";
 import InputControl from "../InputControl/InputControl.js";
 import { useState } from "react";
 import Banner from "../Banner/Banner.js";
+
 const WorkExperience = () => {
   const tempproject = {
     title: "",
@@ -25,7 +26,26 @@ const WorkExperience = () => {
     },
   ]);
   const [flag, setFlag] = useState(false);
+  const [emptyFlag, setEmptyFlag] = useState(false);
   const IncreaseWorkCount = () => {
+    for (let i = 0; i < values.length; i++) {
+      if (
+        values[i].title !== "" &&
+        values[i].companyName !== "" &&
+        values[i].location !== "" &&
+        values[i].startDate !== "" &&
+        values[i].endDate !== "" &&
+        values[i].workDesc !== ""
+      ) {
+      } else {
+        setEmptyFlag(true);
+        setTimeout(() => {
+          setEmptyFlag(false);
+        }, 2000);
+
+        return;
+      }
+    }
     if (values.length === 4) {
       setFlag(true);
       setTimeout(() => {
@@ -34,6 +54,7 @@ const WorkExperience = () => {
 
       return;
     }
+
     setValues((values) => [...values, tempproject]);
   };
   useEffect(() => {
@@ -47,25 +68,43 @@ const WorkExperience = () => {
       localStorage.setItem("workExp", data);
     }, 10);
   }, [values]);
+  const handleDelete = (id) => {
+    if (values.length === 1) {
+      return;
+    }
+    setValues((current) => current.filter((item, index) => index != id));
+  };
+
   return (
     <>
+      {emptyFlag && <Banner title="* marked Fields are mandatory !!" />}
       {flag && <Banner title="You have added Enough Work Experiences !" />}
       <div className={styles.detail}>
         <div className={styles.workHeader}>
-          <div className={styles.addHeader} onClick={() => IncreaseWorkCount()}>
+          <button className={styles.addHeader} onClick={() => IncreaseWorkCount()}>
             <span className={styles.addicon}>+</span>
             Add Work Experience
-          </div>
+          </button>
         </div>
         {values?.map((key, index) => (
           <div className={styles.workExpBody} key={key}>
             <div key={key} className={styles.header}>
-              🧑‍🏭 Work Experience {index + 1}
+              Work Experience {index + 1}
+              &nbsp;&nbsp;&nbsp;
+              {values.length > 1 && (
+                <span
+                  className={styles.deleteIcon}
+                  onClick={() => handleDelete(index)}
+                >
+                  ❌
+                </span>
+              )}
             </div>
             <div className={styles.row}>
               <InputControl
                 label="Title"
                 placeholder="Enter title eg. Frontend developer"
+                imp="true"
                 value={values[index].title}
                 onChange={(e) => {
                   let newarr = [...values];
@@ -76,6 +115,7 @@ const WorkExperience = () => {
               <InputControl
                 label="Company Name"
                 placeholder="Enter company name eg. amazon"
+                imp="true"
                 value={values[index].companyName}
                 onChange={(e) => {
                   let newarr = [...values];
@@ -96,8 +136,9 @@ const WorkExperience = () => {
                 }}
               />
               <InputControl
-                label="location"
+                label="Location"
                 placeholder="Enter location eg. Remote"
+                imp="true"
                 value={values[index].location}
                 onChange={(e) => {
                   let newarr = [...values];
@@ -110,6 +151,7 @@ const WorkExperience = () => {
               <InputControl
                 label="Start Date"
                 type="date"
+                imp="true"
                 placeholder="Enter start date of work"
                 value={values[index].startDate}
                 onChange={(e) => {
@@ -121,6 +163,7 @@ const WorkExperience = () => {
               <InputControl
                 label="End Date"
                 type="date"
+                imp="true"
                 placeholder="Enter end date of work"
                 value={values[index].endDate}
                 onChange={(e) => {
@@ -132,10 +175,10 @@ const WorkExperience = () => {
             </div>
 
             <div className={styles.column}>
-              <label>Enter work description</label>
+              <label>Enter work description &nbsp;<span style={{color:"red",fontWeight:"Bold"}}>*</span></label>
               <textarea
                 className={styles.textarea}
-                placeholder="Enter your work Description"
+                placeholder="Enter your work Description in points by pressing enter"
                 value={values[index].workDesc}
                 onChange={(e) => {
                   let newarr = [...values];
@@ -143,6 +186,7 @@ const WorkExperience = () => {
                   setValues(newarr);
                 }}
               />
+              
             </div>
           </div>
         ))}

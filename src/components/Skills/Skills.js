@@ -9,8 +9,17 @@ const Skills = () => {
   const [flag, setFlag] = useState(false);
 
   const handleSubmit = () => {
-    if (current !== "") {
-      setSkills((skills) => [...skills, current]);
+    let flag = 0;
+    for (let i = 0; i < current.length; i++) {
+      if (current[i] !== " ") flag = 1;
+    }
+    if (flag === 0) {
+      setCurrent("");
+      return;
+    }
+    let newText = current.split(/[ ]+/);
+    if (current !== "" && newText.length !== 0) {
+      setSkills((skills) => [...skills, newText.join(" ")]);
       setCurrent("");
     } else {
       setFlag(true);
@@ -35,6 +44,24 @@ const Skills = () => {
     setSkills((current) => current.filter((item, index) => index != id));
   };
 
+  const handleKeyDown = (event) => {
+    let flag = 0;
+    for (let i = 0; i < current.length; i++) {
+      if (current[i] !== " ") flag = 1;
+    }
+    if (flag === 0) {
+      setCurrent("");
+      return;
+    }
+    let newText = current.split(/[ ]+/);
+    if (event.key === "Enter" && newText.length !== 0 && skills.length <= 36) {
+      setSkills((skills) => [...skills, newText.join(" ")]);
+      setCurrent("");
+    } else if (event.key === "Enter" && newText.length !== 0) {
+      setCurrent("");
+    }
+  };
+
   return (
     <>
       {flag && <Banner title="Field is mandatory !" />}
@@ -49,10 +76,11 @@ const Skills = () => {
               onChange={(e) => {
                 setCurrent(e.target.value);
               }}
+              onKeyDown={handleKeyDown}
             />
             <button
               className={styles.skillButton}
-              disabled={skills.length === 36}
+              disabled={skills.length > 36}
               onClick={handleSubmit}
             >
               Add Skill

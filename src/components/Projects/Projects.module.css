@@ -53,6 +53,14 @@
     align-items: center;
     padding-right: 4px;
     cursor: pointer;
+    background-color: transparent;
+}
+
+.addheader:hover {
+    color: lightskyblue;
+    /* background-color: black; */
+    position: relative;
+    top: 3px;
 }
 
 .projectheader {
