@@ -1,0 +1,12 @@
+.App{
+    display:flex;
+    flex-direction:row;
+}
+
+.Appsidebar{
+    width:15vw;
+}
+
+.AppContent{
+    width:90vw;
+}

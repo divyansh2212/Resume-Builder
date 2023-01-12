@@ -1,10 +1,16 @@
 import React from "react";
 import styles from "../Header/Header.module.css";
 import ResumeSvg from "../../assets/resume.svg";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
   return (
-    <div className={styles.container}>
+    <div
+      className={styles.container}
+      id="home"
+      onMouseEnter={() => navigate("#home")}
+    >
       <div className={styles.left}>
         <p className={styles.heading}>
           A <span>Resume</span> that stands out!

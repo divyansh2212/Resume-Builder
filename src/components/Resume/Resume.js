@@ -11,8 +11,10 @@ import {
 import { Icon } from "@iconify/react";
 
 import styles from "./Resume.module.css";
+import { useNavigate } from "react-router-dom";
 
 const Resume = forwardRef((props, ref) => {
+  const navigate = useNavigate();
   const resumeInformation = {
     "Basic Info": {
       id: "Basic Info",
@@ -86,7 +88,13 @@ const Resume = forwardRef((props, ref) => {
           info.workExp?.sectionTitle ? "" : styles.hidden
         }`}
       >
-        {info.workExp?.details[0]?.title !== "" && info.workExp?.details[0]?.companyName!="" && info.workExp?.details[0]?.companyName!="" && info.workExp?.details[0]?.location!="" && info.workExp?.details[0]?.startDate!="" && info.workExp?.details[0]?.endDate!="" && info.workExp?.details[0].workDesc!="" && (
+        {info.workExp?.details[0]?.title !== "" &&
+          info.workExp?.details[0]?.companyName != "" &&
+          info.workExp?.details[0]?.companyName != "" &&
+          info.workExp?.details[0]?.location != "" &&
+          info.workExp?.details[0]?.startDate != "" &&
+          info.workExp?.details[0]?.endDate != "" &&
+          info.workExp?.details[0].workDesc != "" && (
             <>
               <div className={styles.sectionTitle}>
                 {info.workExp.sectionTitle}
@@ -371,7 +379,7 @@ const Resume = forwardRef((props, ref) => {
   }, [props.activeColor]);
 
   return (
-    <div ref={ref}>
+    <div ref={ref} id="yourresume" onMouseEnter={() => navigate("#yourresume")}>
       <div ref={containerRef} className={styles.container}>
         <div className={styles.header}>
           <p className={styles.heading}>{info.basicInfo?.details?.name}</p>

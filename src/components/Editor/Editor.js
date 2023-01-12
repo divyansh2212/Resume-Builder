@@ -6,15 +6,20 @@ import Projects from "../Projects/Projects.js";
 import Education from "../Education/Education.js";
 import Achievements from "../Achievements/Achievements.js";
 import Skills from "../Skills/Skills";
+import { useNavigate } from "react-router-dom";
 
 function Editor(props) {
+  const navigate = useNavigate();
   const sections = props.sections;
-
   const [activeSectionKey, setActiveSectionKey] = useState(sections[0]);
 
   return (
     <>
-      <div className={styles.container}>
+      <div
+        className={styles.container}
+        id="resumeditor"
+        onMouseEnter={() => navigate("#resumeditor")}
+      >
         <div className={styles.header}>
           {sections?.map((key) => (
             <div

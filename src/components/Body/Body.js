@@ -4,6 +4,7 @@ import { ArrowDown } from "react-feather";
 import ReactToPrint from "react-to-print";
 import Editor from "../Editor/Editor";
 import Resume from "../Resume/Resume";
+import { useNavigate } from "react-router-dom";
 
 const Body = () => {
   const colors = ["#239ce2", "#48bb78", "#0bc5ea", "#a0aec0", "#ed8936"];
@@ -19,11 +20,20 @@ const Body = () => {
 
   const [activeColor, setActiveColor] = useState(colors[0]);
 
+  const navigate = useNavigate();
   return (
-    <div className={styles.container}>
+    <div
+      className={styles.container}
+      id="colortoolbar"
+      onMouseEnter={() => navigate("#colortoolbar")}
+    >
       <p className={styles.heading}>Resume Builder</p>
       <div className={styles.toolbar}>
-        <div className={styles.colors}>
+        <div
+          className={styles.colors}
+          id="colortoolbar"
+          onMouseEnter={() => navigate("#colortoolbar")}
+        >
           {colors.map((item) => (
             <span
               key={item}
@@ -38,7 +48,7 @@ const Body = () => {
         <ReactToPrint
           trigger={() => {
             return (
-              <button>
+              <button id="download" onMouseEnter={() => navigate("#download")}>
                 Download <ArrowDown />
               </button>
             );
@@ -48,11 +58,7 @@ const Body = () => {
       </div>
       <div className={styles.main}>
         <Editor sections={sections} />
-        <Resume
-          ref={resumeRef}
-          sections={sections}
-          activeColor={activeColor}
-        />
+        <Resume ref={resumeRef} sections={sections} activeColor={activeColor} />
       </div>
     </div>
   );

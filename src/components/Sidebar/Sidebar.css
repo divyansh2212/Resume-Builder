@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Mukta+Vaani&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500&display=swap');
+
+
+.resumeheader {
+    color: white;
+    font-family: 'Caveat', cursive;
+    display: flex;
+    margin-top: 20px;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.sideBar {
+    top: 0px;
+    left: 0px;
+    width: 15vw;
+    height: 100vh;
+    position: fixed;
+    background-color: rgb(64, 62, 62);
+}
+
+.nav {
+    position: sticky;
+    list-style: none;
+    overflow: hidden;
+    margin-top: 30px;
+}
+
+.navitem {
+    width: 100%;
+    padding: 5px 10px;
+}
+
+.navlink {
+    text-decoration: none;
+    color: white;
+    font-family: 'Mukta Vaani', sans-serif;
+    font-size: 20px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: 5px 0px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+.navsideactive {
+    text-decoration: none;
+    color: white;
+    font-family: 'Mukta Vaani', sans-serif;
+    font-size: 20px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: 5px 0px;
+    background-color: white;
+    color: rgb(64, 62, 62);
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
